@@ -70,10 +70,23 @@ var allQuestion = [{
     question: "Who is the PM of United State ?", 
     choices: ["George Bush", "Abraham Lincon", "Barrack Obama", "Theo Rosevelt"], 
     correctAnswer: 2
-}
-]; 
+    },
+    {
+        question: "Who is the Founder of Apple?",
+        choices: ["Bill Gates", "Steve Jobs", "Jeff Bezos", "Elen Musk"],
+        correctAnswer: 1
+    },
+    {
+        question: "What is the name of Khoai's son?",
+        choices: ["Titi", "Tin tin", "meo meo", "Cantona"],
+        correctAnswer: 0
+    }
+];
 
-var questionIndex = 0; 
+var answerList = document.getElementById('answerList');
+var questionIndex = 0;
+var score = 0;
+var nextButton = document.getElementById("nextButton");
 
 showQuestion(); 
 showAnswer(); 
@@ -86,12 +99,40 @@ function showQuestion() {
 }
 
 function showAnswer() {
-   var answerList = document.getElementById('answerList'); 
+
    var answerArray = allQuestion[questionIndex].choices; 
    for (var i = 0; i < answerArray.length; i++) {
        
-        answerList.innerHTML += '<input type="checkbox" id="' + i  + '" />' + '<li>' + answerArray[i] + '</li>'
+        answerList.innerHTML +=  '<li>' + answerArray[i] + '<input type="checkbox" name="checkbox" id="' + i  + '"  />' + '</li>';
    }  
 }
 
-console.log(allQuestion[0].choices);
+
+
+nextButton.onclick = function() {
+    checkId(); //return i;
+    var i = checkId();
+
+    if (allQuestion[questionIndex].correctAnswer == i) {
+        alert("Perfect");
+        score += 100;
+    }
+
+    questionIndex++;
+    showQuestion();
+    answerList.innerHTML = "";
+    showAnswer();
+
+};
+
+function checkId() {
+    var c = document.getElementById("answerList").getElementsByTagName("input");
+    for (var i = 0; i < c.length; i++) {
+        console.log(c[i]);
+        console.log(c[i].checked);
+        if (c[i].checked == true) {
+            console.log(i);
+            return i;
+        }
+    }
+}
