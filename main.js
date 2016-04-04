@@ -61,26 +61,48 @@ show();
 
 // Tesing the quiz application
 
-var allQuestion = [{
-    question: "Who is the PM of United Kingdom ?", 
-    choices: ["David Cameron", "Gordon Brown", "Tony Blair", "Winston Churchill"], 
-    correctAnswer: 0
-                    }, 
-                    {
-    question: "Who is the PM of United State ?", 
-    choices: ["George Bush", "Abraham Lincon", "Barrack Obama", "Theo Rosevelt"], 
-    correctAnswer: 2
-    },
-    {
-        question: "Who is the Founder of Apple?",
-        choices: ["Bill Gates", "Steve Jobs", "Jeff Bezos", "Elen Musk"],
-        correctAnswer: 1
-    },
-    {
-        question: "What is the name of Khoai's son?",
-        choices: ["Titi", "Tin tin", "meo meo", "Cantona"],
-        correctAnswer: 0
-    }
+var allQuestion = [
+        {
+            question: "Who is the PM of United Kingdom ?",
+            choices: ["David Cameron", "Gordon Brown", "Tony Blair", "Winston Churchill"],
+            correctAnswer: 0
+        },
+        {
+            question: "Who is the PM of United State ?",
+            choices: ["George Bush", "Abraham Lincon", "Barrack Obama", "Theo Rosevelt"],
+            correctAnswer: 2
+        },
+        {
+            question: "Who is the Founder of Apple?",
+            choices: ["Bill Gates", "Steve Jobs", "Jeff Bezos", "Elen Musk"],
+            correctAnswer: 1
+        },
+        {
+            question: "What is the name of Khoai's son?",
+            choices: ["Titi", "Tin tin", "meo meo", "Cantona"],
+            correctAnswer: 0
+        },
+        {
+            "question": "What is the full form of IP?",
+            "choices": ["Internet Provider", "Internet Port", "Internet Protocol"],
+            "correctAnswer": 2
+        }, {
+            "question": "Who is the founder of Microsoft?",
+            "choices": ["Bill Gates", "Steve Jobs", "Steve Wozniak"],
+            "correctAnswer": 0
+        }, {
+            "question": "1 byte = ?",
+            "choices": ["8 bits", "64 bits", "1024 bits"],
+            "correctAnswer": 0
+        }, {
+            "question": "The C programming language was developed by?",
+            "choices": ["Brendan Eich", "Dennis Ritchie", "Guido van Rossum"],
+            "correctAnswer": 1
+        }, {
+            "question": "What does CC mean in emails?",
+            "choices": ["Carbon Copy", "Creative Commons", "other"],
+            "correctAnswer": 0
+        }
 ];
 
 var answerList = document.getElementById('answerList');
@@ -122,6 +144,7 @@ nextButton.onclick = function() {
     showQuestion();
     answerList.innerHTML = "";
     showAnswer();
+    showScore();
 
 };
 
@@ -133,6 +156,14 @@ function checkId() {
         if (c[i].checked == true) {
             console.log(i);
             return i;
+        } else if (c[c.length -1].checked == false) {
+            alert("Please answer before proceed"); 
         }
     }
+
+};
+
+function showScore() {
+    var scoreBoard = document.getElementById("score");
+    scoreBoard.innerHTML = 'Score: ' + score;
 }
